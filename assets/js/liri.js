@@ -2,9 +2,10 @@
 require("dotenv").config();
 
 var keys = require("./keys");
-var spotify = require('node-spotify-api');
-var axios = require('axios');
-var moment = require('moment');
+var spotify = require("node-spotify-api");
+var axios = require("axios");
+var fs = require("fs");
+var moment = require("moment");
 
 // Spotify API Credentials.
 var spotify = new spotify({
@@ -25,6 +26,9 @@ function userCommand(userInput, userQuery) {
             break;
         case "movie-this":
             movieThis();
+            break;
+        case "concert-this":
+            concertThis();
             break;
         // If the 'userInput' doesn't match any switch case, do this.
         default:
@@ -68,29 +72,57 @@ function spotifyThis() {
 
 // OMDB API.
 function movieThis() {
+    // OMDB URL Query.
     axios.get('http://www.omdbapi.com/?apikey=trilogy&t=' + userQuery)
         .then(function (response) {
+            // Stringify response data to get back an object.
             let movieRatings = JSON.stringify(response.data.Ratings);
-            if (movieRatings > 2) {
-            }
+
+            // Content Container [Start].
             console.log('\n---------- ' + userInput + ' ----------\n');
-            // handle success
-            console.log("Movie Title: " + response.data.Title + " " + "(" + response.data.Year + ")");
-            console.log("Movie Rating: " + movieRatings);
-            console.log("Country Produced: " + response.data.Country);
-            console.log("Language: " + response.data.Language);
-            console.log("Movie Plot: " + response.data.Plot);
-            console.log("Movie Cast: " + response.data.Actors)
+            // Movie Title + Year.
+            console.log("Movie Title: " + response.data.Title + " " + "(" + response.data.Year + ")\n");
+            // Movie Rating.
+            console.log("Movie Rating: " + movieRatings + "\n");
+            // Country Produced.
+            console.log("Country Produced: " + response.data.Country + "\n");
+            // Language.
+            console.log("Language: " + response.data.Language + "\n");
+            // Movie Plot.
+            console.log("Movie Plot: " + response.data.Plot + "\n");
+            // Movie Cast.
+            console.log("Movie Cast: " + response.data.Actors + "\n")
 
             // console.log(response)
             console.log('\n---------- ' + userInput + ' ----------\n');
+            // Content Container [End].
         })
         .catch(function (error) {
             // handle error
             console.log(error);
         })
-        .finally(function () {
-            // always executed
-        });
 }
 
+// Bands In Town API.
+function concertThis() {
+    // Make a request for a user with a given ID
+    axios.get("https://rest.bandsintown.com/artists/" + userQuery + "/events?app_id=codingbootcamp")
+        .then(function (response) {
+            // Content Container [Start].
+            console.log('\n---------- ' + userInput + ' ----------\n');
+            // Concert Venue Name.
+            console.log("Venue: " + response.data[1].venue.name + "\n");
+            // Concert Location.
+            console.log("Location: " + response.data[1].venue.country + " " + "(" + response.data[1].venue.city + ")" + "\n");
+            // Concert Date.
+            var dateTimeFormat = moment(response.data[1].datetime).format("MM/DD/YY");
+            console.log("Event Date: " + dateTimeFormat + "\n");
+            // Content Container [End].
+            console.log('\n---------- ' + userInput + ' ----------\n');
+            // console.log(response)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+}
