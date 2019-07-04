@@ -32,7 +32,18 @@ function userCommand(userInput, userQuery) {
             break;
         // If the 'userInput' doesn't match any switch case, do this.
         default:
-            console.log("Command Not Found.");
+            console.log("╔════════════════════ WELCOME ══════════════════════════════╗");
+            console.log(" Welcome, my name is Liri, your personal command line buddy! \n" +
+                " How can I help you? Below are a list of handy \n" +
+                " little commands. \n");
+
+            console.log("╔═════════════ Command Lsit ══════════════╗");
+            console.log(" ★ node liri <spotify-this>, <song name>");
+            console.log(" ★ node liri <concert-this>, <artist name>");
+            console.log(" ★ node liri <movie-this>, <movie name>");
+            console.log("╚═════════════ Command Lsit ══════════════╝ \n");
+
+            console.log("╚════════════════════ WELCOME ══════════════════════════════╝");
     }
 }
 
