@@ -32,7 +32,7 @@ function userCommand(userInput, userQuery) {
             break;
         // If the 'userInput' doesn't match any switch case, do this.
         default:
-            console.log("I don't understand this command.");
+            console.log("Command Not Found.");
     }
 }
 
@@ -92,8 +92,12 @@ function movieThis() {
             console.log("Movie Plot: " + response.data.Plot + "\n");
             // Movie Cast.
             console.log("Movie Cast: " + response.data.Actors + "\n")
-
-            // console.log(response)
+            // Loop through the response object and grab the ratings.
+            for (var r = 0; r < response.data.Ratings.length; r++) {
+                var rSource = response.data.Ratings[r].Source;
+                var rValue = response.data.Ratings[r].Value;
+                console.log(rSource + ":" + " " + rValue);
+            }
             console.log('\n---------- ' + userInput + ' ----------\n');
             // Content Container [End].
         })
