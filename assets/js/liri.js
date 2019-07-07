@@ -1,7 +1,7 @@
 // Node Packages.
 require("dotenv").config();
+require("./keys");
 
-var keys = require("./keys");
 var spotify = require("node-spotify-api");
 var axios = require("axios");
 var fs = require("fs");
@@ -26,6 +26,7 @@ var tipAry = [
     "If you're seeing this message\n after typing a command, then your command\n was invalid.",
     "Songs and movies have 'Previews'\n for you to enjoy, click on them when you\n see them."
 ];
+
 // Make tips random.
 var RandomTips = Math.floor(Math.random(tipAry) * 3);
 
@@ -48,6 +49,9 @@ function userCommand(userInput, userQuery) {
             break;
         case "concert-this":
             concertThis();
+            break;
+        case "do-this":
+            doWhatItSays();
             break;
         // If the 'userInput' doesn't match any switch case, do this.
         default:
@@ -106,9 +110,6 @@ function movieThis() {
     // OMDB URL Query.
     axios.get('http://www.omdbapi.com/?apikey=trilogy&t=' + userQuery)
         .then(function (response) {
-            // Stringify response data to get back an object.
-            let movieRatings = JSON.stringify(response.data.Ratings);
-
             // Content Container [Start].
             console.log('\n---------- ' + userInput + ' ----------\n');
             // Movie Title + Year.
@@ -117,6 +118,7 @@ function movieThis() {
             for (var r = 0; r < response.data.Ratings.length; r++) {
                 var rSource = response.data.Ratings[r].Source;
                 var rValue = response.data.Ratings[r].Value;
+                // Log the ratings response.
                 console.log(rSource + ":" + " " + rValue + "\n");
             }
             // Country Produced.
@@ -159,4 +161,28 @@ function concertThis() {
             // handle error
             console.log(error);
         })
+}
+
+// doWhatItSays() ---> Returns a random API response dependent on the content of the 'random.txt' file.
+function doWhatItSays() {
+    // Read file 'random.txt'.
+    fs.readFile("random.txt", "utf8", function (err, data) {
+
+        // Handle Data Exception. 
+        if (err) {
+            throw err;
+        }
+
+        // Splits the data from 'random.txt' into two seperate entities (arguments in this case).
+        let dataAry = data.split(",");
+
+        // Equal to the values in our switch statement (Example: spotify-this).
+        userInput = dataAry[0];
+
+        // Equal to the data request for the corresponding API (Example: 'I want it that way').
+        userQuery = dataAry[1];
+
+        // Call our switch statement and attempt to compile a data response from our text file 'random.txt'.
+        userCommand(userInput, userQuery);
+    });
 }
