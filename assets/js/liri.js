@@ -18,6 +18,25 @@ var userInput = process.argv[2];
 // Send API Request (Example: 'I Want It That Way').
 var userQuery = process.argv.slice(3).join(" ");
 
+// LIRI TIPS.
+
+// Tip array.
+var tipAry = [
+    "Remember, you can always reference\n this list by typing 'node liri' in the\n command line.",
+    "If you're seeing this message\n after typing a command, then your command\n was invalid.",
+    "Songs and movies have 'Previews'\n for you to enjoy, click on them when you\n see them."
+];
+// Make tips random.
+var RandomTips = Math.floor(Math.random(tipAry) * 3);
+
+// Loop through the tip index and show random tip strings.
+for (key in tipAry) {
+    // Push tip string index into the 'tip' variable.
+    tip = tipAry[RandomTips];
+    // Break after one iteration so we don't get the same string three times.
+    break;
+}
+
 // If the 'userInput' is equal to one of the switch cases, execute API request from that switch case index.
 function userCommand(userInput, userQuery) {
     switch (userInput) {
@@ -43,6 +62,7 @@ function userCommand(userInput, userQuery) {
             console.log(" ★ node liri <movie-this>, <movie name>");
             console.log("╚═════════════ Command Lsit ══════════════╝ \n");
 
+            console.log(" LIRI TIPS: " + tip) + ".";
             console.log("╚════════════════════ WELCOME ══════════════════════════════╝");
     }
 }
@@ -92,9 +112,13 @@ function movieThis() {
             // Content Container [Start].
             console.log('\n---------- ' + userInput + ' ----------\n');
             // Movie Title + Year.
-            console.log("Movie Title: " + response.data.Title + " " + "(" + response.data.Year + ")\n");
-            // Movie Rating.
-            console.log("Movie Rating: " + movieRatings + "\n");
+            console.log("Movie Title: " + response.data.Title + " " + "(" + response.data.Year + ")" + "\n")
+            // Loop through the response object and grab the ratings.
+            for (var r = 0; r < response.data.Ratings.length; r++) {
+                var rSource = response.data.Ratings[r].Source;
+                var rValue = response.data.Ratings[r].Value;
+                console.log(rSource + ":" + " " + rValue + "\n");
+            }
             // Country Produced.
             console.log("Country Produced: " + response.data.Country + "\n");
             // Language.
@@ -103,12 +127,7 @@ function movieThis() {
             console.log("Movie Plot: " + response.data.Plot + "\n");
             // Movie Cast.
             console.log("Movie Cast: " + response.data.Actors + "\n")
-            // Loop through the response object and grab the ratings.
-            for (var r = 0; r < response.data.Ratings.length; r++) {
-                var rSource = response.data.Ratings[r].Source;
-                var rValue = response.data.Ratings[r].Value;
-                console.log(rSource + ":" + " " + rValue);
-            }
+
             console.log('\n---------- ' + userInput + ' ----------\n');
             // Content Container [End].
         })
@@ -130,7 +149,7 @@ function concertThis() {
             // Concert Location.
             console.log("Location: " + response.data[1].venue.country + " " + "(" + response.data[1].venue.city + ")" + "\n");
             // Concert Date.
-            var dateTimeFormat = moment(response.data[1].datetime).format("MM/DD/YY");
+            var dateTimeFormat = moment(response.data[1].datetime).format("MM/DD/YYYY");
             console.log("Event Date: " + dateTimeFormat + "\n");
             // Content Container [End].
             console.log('\n---------- ' + userInput + ' ----------\n');
