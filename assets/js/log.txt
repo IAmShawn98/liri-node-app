@@ -1,13 +1,1 @@
 Liri Script Executed, Showing List of Commands
-spotify-this: 'fill me in craig david'
-concert-this: 'Craig David'
-movie-this: 'spider-man'
-Liri Script Executed, Showing List of Commands
-spotify-this: 'I Want it That Way'
-spotify-this: 'I Want it That Way'
-Liri Script Executed, Showing List of Commands
-spotify-this: 'The Sign Ace of Base'
-spotify-this: 'The Sign Ace of Base'
-movie-this: 'Dark Shadows'
-movie-this: 'Dark Shadows'
-concert-this: 'Craig David'
