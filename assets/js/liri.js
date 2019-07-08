@@ -68,6 +68,12 @@ function userCommand(userInput, userQuery) {
 
             console.log(" LIRI TIPS: " + tip) + ".";
             console.log("╚════════════════════ WELCOME ══════════════════════════════╝");
+
+            userInput = "Liri Script Executed, Showing List of Commands";
+            // Create the command the user wrote into a log file.
+            fs.appendFile('log.txt', userInput + "\n", function (err) {
+                if (err) throw err;
+            });
     }
 }
 
@@ -101,6 +107,11 @@ function spotifyThis() {
             console.log("Preview: " + data.tracks.items[i].preview_url + "\n");
             // Content Container [End].
             console.log('---------- ' + userInput + ' ----------');
+
+            // Create the command the user wrote into a log file.
+            fs.appendFile('log.txt', userInput + ": '" + userQuery + "'\n", function (err) {
+                if (err) throw err;
+            });
         }
     });
 }
@@ -132,6 +143,11 @@ function movieThis() {
 
             console.log('\n---------- ' + userInput + ' ----------\n');
             // Content Container [End].
+
+            // Create the command the user wrote into a log file.
+            fs.appendFile('log.txt', userInput + ": '" + userQuery + "'\n", function (err) {
+                if (err) throw err;
+            });
         })
         .catch(function (error) {
             // handle error
@@ -156,7 +172,13 @@ function concertThis() {
             // Content Container [End].
             console.log('\n---------- ' + userInput + ' ----------\n');
             // console.log(response)
+
+            // Create the command the user wrote into a log file.
+            fs.appendFile('log.txt', userInput + ": '" + userQuery + "'\n", function (err) {
+                if (err) throw err;
+            });
         })
+
         .catch(function (error) {
             // handle error
             console.log(error);
@@ -184,5 +206,10 @@ function doWhatItSays() {
 
         // Call our switch statement and attempt to compile a data response from our text file 'random.txt'.
         userCommand(userInput, userQuery);
+
+        // Create the command the user wrote into a log file.
+        fs.appendFile('log.txt', userInput + ": '" + userQuery + "'\n", function (err) {
+            if (err) throw err;
+        });
     });
 }
