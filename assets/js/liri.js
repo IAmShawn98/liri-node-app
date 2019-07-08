@@ -84,6 +84,7 @@ userCommand(userInput, userQuery);
 
 // Spotify API.
 function spotifyThis() {
+    // If the user doesn't enter anything, suggest a song for them.
     if (!userQuery) {
         userQuery = "The Sign Ace of Base";
     }
@@ -118,6 +119,10 @@ function spotifyThis() {
 
 // OMDB API.
 function movieThis() {
+    // If the user doesn't enter anything, suggest a movie to them.
+    if (!userQuery) {
+        userQuery = "Dark Shadows";
+    }
     // OMDB URL Query.
     axios.get('http://www.omdbapi.com/?apikey=trilogy&t=' + userQuery)
         .then(function (response) {
@@ -157,6 +162,10 @@ function movieThis() {
 
 // Bands In Town API.
 function concertThis() {
+    // If the user doesn't enter anything, suggest an artist to them.
+    if (!userQuery) {
+        userQuery = "Craig David";
+    }
     // Make a request for a user with a given ID
     axios.get("https://rest.bandsintown.com/artists/" + userQuery + "/events?app_id=codingbootcamp")
         .then(function (response) {
