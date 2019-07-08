@@ -90,7 +90,6 @@ Liri is a command line application, so you can use any of the following CLI's to
 3. Execute liri.js by entering the command: 'node liri'.
 4. Finally, you should get a welcome message with a list of commands!
 
-At this time, an installation guide is not present, as Liri is still a work in progress. More documentation coming very soon!
-
 ## LIRI Bot Presentation Video
-COMING SOON!
+
+Demonstration Here: https://www.youtube.com/watch?v=MaBTRxhaOxs
