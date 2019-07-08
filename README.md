@@ -16,7 +16,9 @@ need, whenever you need it.
    * axios
    * fs
    * moment
+
 2. It uses JavaScript switch cases to determine if an API is valid or invalid, defaulting to a welcome message with a command list.
+3. Commands are logged into 'log.txt'.
 
 It's really that simple, but it allows you to grab so much data very quickly from many great data sources.
 
@@ -63,13 +65,30 @@ to that API for a response from the server. If the argument is invalid, LIRI def
 a welcome message with a list of suggested commands and tips for the user to try out and<br>
 reference anytime they so desire.
 
+#### History Log
+Once the switch determines the command is valid and API data is returned, your command is logged to a file called 'log.txt'.
+
 ## How to Run LIRI
 Liri is a command line application, so you can use any of the following CLI's to run it:
 
-1. Git Bash
-2. Terminal
-3. Command Prompt
-4. And any CLI that can run Node JavaScript apps
+* Git Bash
+* Terminal
+* Command Prompt
+* And any CLI that can run Node JavaScript apps
+
+#### Assuming You Have Nothing Installed
+1. Clone 'liri-node-app' from the repository to anywhere on your machine.
+2. Install node.js (GO HERE: https://nodejs.org/en/).
+3. Open VS Code or your CLI of choice and run the command :'npm install'.
+4. When your package is done installaing, cd to 'assets\js'.
+5. Execute liri.js by entering the command: 'node liri'.
+6. Finally, you should get a welcome message with a list of commands!
+
+#### Assuming You Have Everything Installed
+1. Clone 'liri-node-app' from the repository to anywhere on your machine.
+2. Open VS Code or your CLI of choice and cd to 'assets\js'.
+3. Execute liri.js by entering the command: 'node liri'.
+4. Finally, you should get a welcome message with a list of commands!
 
 At this time, an installation guide is not present, as Liri is still a work in progress. More documentation coming very soon!
 
