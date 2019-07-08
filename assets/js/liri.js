@@ -34,7 +34,65 @@ var RandomTips = Math.floor(Math.random(tipAry) * 3);
 for (key in tipAry) {
     // Push tip string index into the 'tip' variable.
     tip = tipAry[RandomTips];
-    // Break after one iteration so we don't get the same string three times.
+    // Break after one iteration so we don't get duplicates.
+    break;
+}
+
+// Tip array.
+var movieAry = [
+    "The Mask",
+    "Dark Shadows",
+    "Billy Madison"
+];
+
+// Make tips random.
+var RandomMovie = Math.floor(Math.random(movieAry) * 3);
+
+// Loop through the tip index and show random tip strings.
+for (key in movieAry) {
+    // Push tip string index into the 'tip' variable.
+    movies = movieAry[RandomMovie];
+    // Break after one iteration so we don't get duplicates.
+    break;
+}
+
+// SONG SUGGESTIONS.
+var songAry = [
+    "The Sign Ace of Base",
+    "7 days Craig David",
+    "In the End Linkin Park",
+    "Rick Astley Never Gonna Give You Up"
+]
+
+// Randomize Song Array.
+var randomSongs = Math.floor(Math.random(songAry) * 4);
+
+// Loop through the song index and show results for suggested songs as a result.
+for (key in songAry) {
+    // Push random song to the 'songs' variable.
+    songs = songAry[randomSongs];
+    // Break after one iteration so we don't get duplicates.
+    break;
+}
+
+// CONCERT (ARTIST) SUGGESTIONS.
+
+// Band or Artist Array.
+var artistAry = [
+    "Craig David",
+    "Linkin Park",
+    "Rick Astley",
+    "Breaking Benjamin"
+]
+
+// Randomize Bands.
+var randomArtist = Math.floor(Math.random(artistAry) * 4);
+
+// Loop through the band index and show results for suggested bands/ artists as a result.
+for (key in artistAry) {
+    // Push random band to the 'bands' variable.
+    bands = artistAry[randomArtist];
+    // Break after one iteration so we don't get duplicates.
     break;
 }
 
@@ -86,7 +144,7 @@ userCommand(userInput, userQuery);
 function spotifyThis() {
     // If the user doesn't enter anything, suggest a song for them.
     if (!userQuery) {
-        userQuery = "The Sign Ace of Base";
+        userQuery = songs;
     }
     // Spotify Search Query.
     spotify.search({ type: 'track', query: userQuery, limit: 1 }, function (error, data) {
@@ -121,7 +179,7 @@ function spotifyThis() {
 function movieThis() {
     // If the user doesn't enter anything, suggest a movie to them.
     if (!userQuery) {
-        userQuery = "Dark Shadows";
+        userQuery = movies;
     }
     // OMDB URL Query.
     axios.get('http://www.omdbapi.com/?apikey=trilogy&t=' + userQuery)
@@ -164,7 +222,7 @@ function movieThis() {
 function concertThis() {
     // If the user doesn't enter anything, suggest an artist to them.
     if (!userQuery) {
-        userQuery = "Craig David";
+        userQuery = bands;
     }
     // Make a request for a user with a given ID
     axios.get("https://rest.bandsintown.com/artists/" + userQuery + "/events?app_id=codingbootcamp")
