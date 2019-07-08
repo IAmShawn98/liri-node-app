@@ -122,6 +122,7 @@ function userCommand(userInput, userQuery) {
             console.log(" ★ node liri <spotify-this>, <song name>");
             console.log(" ★ node liri <concert-this>, <artist name>");
             console.log(" ★ node liri <movie-this>, <movie name>");
+            console.log(" ★ node liri <do-this>");
             console.log("╚═════════════ Command Lsit ══════════════╝ \n");
 
             console.log(" LIRI TIPS: " + tip) + ".";
